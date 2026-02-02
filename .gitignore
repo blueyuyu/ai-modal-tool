@@ -1,0 +1,14 @@
+node_modules
+.DS_Store
+.github
+dist
+.npmrc
+.cache
+
+
+.local
+# local env files
+.env
+.env.local
+.env.*.local
+.eslintcache
