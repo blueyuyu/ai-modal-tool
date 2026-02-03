@@ -68,6 +68,8 @@ async function runAgentWithTools(query, maxIterations = 30) {
       return response.content;
     }
 
+    console.log("tool_calls", response.tool_calls);
+
     // 执行工具调用
     for (const toolCall of response.tool_calls) {
       const foundTool = tools.find((t) => t.name === toolCall.name);
