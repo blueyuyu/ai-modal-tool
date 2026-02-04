@@ -61,9 +61,9 @@ const writeFileTool = tool(
 
 // 3. 执行命令工具（带实时输出）
 const executeCommandTool = tool(
-  ({ filePath, command }) => {
+  ({ workingDirectory, command }) => {
     // 执行命令
-    const cwd = filePath ? filePath : process.cwd();
+    const cwd = workingDirectory ? workingDirectory : process.cwd();
     console.log(
       `  [工具调用] execute_command("${command}") - 在 ${cwd} 目录下执行命令`
     );

@@ -75,6 +75,8 @@ async function runAgentWithTools(query, maxIterations = 30) {
     }
   }
 
+  console.log("最终的message", messages);
+
   return messages[messages.length - 1].content;
 }
 

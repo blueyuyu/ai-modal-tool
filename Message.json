@@ -1,0 +1,60 @@
+{
+    "message": [
+        "SystemMessage" {
+          "content": "MCP Server 使用指南\n    \n    功能：提供用户查询等工具。\n    \n    使用：在 Cursor 等 MCP Client 中通过自然语言对话，Cursor 会自动调用相
+      应工具。" ,
+          "additional_kwargs": {},
+          "response_metadata": {}
+        },
+        "HumanMessage" {
+          "content": "MCP Server 的使用指南是什么",
+          "additional_kwargs": {},
+          "response_metadata": {}
+        },
+        "AIMessage" {
+          "id": "chatcmpl-35943632-23dc-9d2a-8a36-6e1c326a32d6",
+          "content": "MCP Server 的使用指南如下：\n\n- **功能**：提供用户查询等工具服务。\n- **使用方式**：在 Cursor 等支持 MCP 协议的客户端（MCP Client）中，通
+      过自然语言对话提出请求；Cursor 会自动识别意图，并调用后端相应的工具函数（如 `query_users`）完成操作。\n- **无需手动调用 API**：用户只需像日常聊天一样提问 
+      （例如：“查一下用户 ID 是 u123 的信息”），系统将自动解析并执行对应工具。\n\n如需具体操作示例或想查询某位用户的信息，请告诉我 👍",
+          "additional_kwargs": {},
+          "response_metadata": {
+            "tokenUsage": {
+              "promptTokens": 218,
+              "completionTokens": 134,
+              "totalTokens": 352
+            },
+            "finish_reason": "stop",
+            "model_provider": "openai",
+            "model_name": "qwen-plus"
+          },
+          "tool_calls": [],
+          "invalid_tool_calls": [],
+          "usage_metadata": {
+            "output_tokens": 134,
+            "input_tokens": 218,
+            "total_tokens": 352,
+            "input_token_details": {
+              "cache_read": 0
+            },
+            "output_token_details": {}
+          }
+        }
+    ],
+    "tool_calls": [
+        {
+          name: 'execute_command',
+          args: {
+            command: 'echo -e "n\\nn" | pnpm create vite react-todo-app --template react-ts',
+            workingDirectory: 'D:\\companyPro\\tool-test'
+          },
+          type: 'tool_call',
+          id: 'call_5378f5c36158467e9e8582'
+        },
+        {
+          name: 'list_directory',
+          args: { directoryPath: 'D:\\companyPro\\tool-test' },
+          type: 'tool_call',
+          id: 'call_c0710cf40fd64b78af9f80'
+        }
+      ],
+}
