@@ -112,6 +112,24 @@ for (const question of questions) {
     3
   );
 
+  // const reDoc = [
+  // Document {
+  //     pageContent: '东东是光光最好的朋友，他是一个安静而聪明的男孩。东东喜欢读书和画画，他的画总是充满了想象力。虽然性格不同，但东东和光光从
+  // 幼儿园就认识了，他们一起度过了无数个快乐的时光。',
+  //     metadata: { chapter: 2, character: '东东', type: '角色介绍', mood: '温馨' },
+  //     id: undefined
+  //   }, ]
+
+  // scoreResult [ [
+  //     Document {
+  //       pageContent: '东东是光光最好的朋友，他是一个安静而聪明的男孩。东东喜欢读书和画画，他的画总是充满了想象力。虽然性格不同，但东东和光光
+  // 从幼儿园就认识了，他们一起度过了无数个快乐的时光。',
+  //       metadata: [Object],
+  //       id: undefined
+  //     },
+  //     0.7794038387582577
+  //   ],  ]
+
   // 打印用到的文档和相似度评分
   console.log("\n【检索到的文档及相似度评分】");
   retrievedDocs.forEach((doc, i) => {
