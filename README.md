@@ -53,3 +53,8 @@ node .\src\loader-and-splitter.mjs
 可以使用多种片段切割方式，但是使用最多的是 RecursiveCharacterTextSplitter 切割
 
 其支持 MarkdownTextSpllitter 和 LatexTextSplitter 且可以按照代码语言对文本进行切割处理。
+
+
+## Milvus 向量数据库
+
+Milvus 里查询知识，是根据语义匹配的，你可以用自然语言来检索。
