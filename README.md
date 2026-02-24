@@ -47,3 +47,9 @@ demo1:  将掘金文章获取解析，将文章分割，变成向量， 并提�
 ```
 node .\src\loader-and-splitter.mjs
 ```
+
+## 关于知识片段的切割方式
+
+可以使用多种片段切割方式，但是使用最多的是 RecursiveCharacterTextSplitter 切割
+
+其支持 MarkdownTextSpllitter 和 LatexTextSplitter 且可以按照代码语言对文本进行切割处理。
