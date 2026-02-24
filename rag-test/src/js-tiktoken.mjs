@@ -9,7 +9,7 @@ import { getEncoding, getEncodingNameForModel } from "js-tiktoken";
 
 const modelName = "gpt-4";
 const encodingName = getEncodingNameForModel(modelName);
-// console.log("此模型的编码方式是:", encodingName); // cl100k_base
+console.log("此模型的编码方式是:", encodingName); // cl100k_base
 
 // const logDocument = new Document({
 //   pageContent: `[2024-01-15 10:00:00] INFO: Application started
