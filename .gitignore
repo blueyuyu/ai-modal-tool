@@ -12,3 +12,5 @@ dist
 .env.local
 .env.*.local
 .eslintcache
+
+milvus/volumes
