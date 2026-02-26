@@ -54,7 +54,35 @@ node .\src\loader-and-splitter.mjs
 
 其支持 MarkdownTextSpllitter 和 LatexTextSplitter 且可以按照代码语言对文本进行切割处理。
 
-
 ## Milvus 向量数据库
 
 Milvus 里查询知识，是根据语义匹配的，你可以用自然语言来检索。
+
+```
+cd  /milvus/milvus-test
+```
+
+插入 Milvus 向量
+
+```
+node  node .\src\insert.mjs
+```
+
+安装 [https://github.com/zilliztech/attu/releases](https://github.com/zilliztech/attu/releases)     Attu 工具
+
+对存储的向量数据，进行查询
+
+```apache
+node .\src\query.mjs
+```
+
+
+**MySQL 数据库只能根据 id、关键词去检索，涉及到语义检索的，我们都会存到 Milvus 里。**
+
+**我们用 docker compose 跑了 Milvus 数据库，然后在 attu （GUI 工具） 和 node 代码里连上，并做了增删改查。**
+
+**Milvus 分为 database、collection、entity 这三级，collection 要指定数据结构也就是 schema。**
+
+**vector 向量字段需要做索引，用来快速检索。**
+
+**我们把 Milvus 接入了 RAG 流程，实现了 AI 日记本的功能。可以根据自然语言去做语义检索，查出最相关的日记。**
