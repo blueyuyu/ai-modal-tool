@@ -18,7 +18,7 @@ import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 const COLLECTION_NAME = "ebook_collection";
 const VECTOR_DIM = 1024;
 const CHUNK_SIZE = 500; // 拆分到 500 个字符
-const EPUB_FILE = "./天龙八部.epub";
+const EPUB_FILE = "./src/天龙八部.epub";
 
 const BOOK_NAME = parse(EPUB_FILE).name;
 
@@ -200,10 +200,21 @@ async function loadAndProcessEPubStreaming(bookId) {
         continue;
       }
 
-      console.log(`  拆分为 ${chunks.length} 个片段`);
+      console.log(`  生成向量并插入中...`);
 
+      const insertedCount = await insertChunksBatch(
+        chunks,
+        bookId,
+        chapterIndex + 1
+      );
 
+      totalInserted += insertedCount;
+      console.log(
+        `  ✓ 已插入 ${insertedCount} 条记录（累计: ${totalInserted}）\n`
+      );
     }
+    console.log(`\n总共插入 ${totalInserted} 条记录\n`);
+    return totalInserted;
   } catch (error) {
     console.error(`加载 EPUB 文件失败:`, error.message);
     throw error;
