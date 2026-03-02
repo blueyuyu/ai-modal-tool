@@ -15,8 +15,8 @@ import { OpenAIEmbeddings } from "@langchain/openai";
 import { EPubLoader } from "@langchain/community/document_loaders/fs/epub";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 
-const COLLECTION_NAME = "ebook_collection1";
-const VECTOR_DIM = 256;
+const COLLECTION_NAME = "ebook_collection";
+const VECTOR_DIM = 1024;
 const CHUNK_SIZE = 500; // 拆分到 500 个字符
 const EPUB_FILE = "./src/天龙八部.epub";
 
@@ -41,14 +41,8 @@ const client = new MilvusClient({
  * 获取文本的向量嵌入
  */
 async function getEmbedding(text) {
-  try {
-    const result = await embeddings.embedQuery(text);
-    console.log(`  ✓ 向量生成成功，维度: ${result.length}`);
-    return result;
-  } catch (error) {
-    console.error(`  ✗ 向量生成失败: ${error.message}`);
-    throw error;
-  }
+  const result = await embeddings.embedQuery(text);
+  return result;
 }
 /**
  * 创建或者获取集合
@@ -138,7 +132,6 @@ async function insertChunksBatch(chunks, bookId, chapterNum) {
     }
 
     // 为每个文档块生成向量并构建插入数据
-    console.log(`  正在为 ${chunks.length} 个分块生成向量...`);
     const insertData = await Promise.all(
       chunks.map(async (chunk, chunkIndex) => {
         const vector = await getEmbedding(chunk);
@@ -161,7 +154,6 @@ async function insertChunksBatch(chunks, bookId, chapterNum) {
       data: insertData,
     });
 
-    console.log(`  插入结果:`, JSON.stringify(insertResult));
     return Number(insertResult.insert_cnt) || 0;
   } catch (error) {
     console.error(`插入章节 ${chapterNum} 的数据时出错:`, error.message);
@@ -204,11 +196,11 @@ async function loadAndProcessEPubStreaming(bookId) {
       const chunks = await textSplitter.splitText(chapterContent);
 
       if (chunks.length === 0) {
-        console.log(`  跳过空章节，内容长度: ${chapterContent?.length || 0}\n`);
+        console.log(`  跳过空章节\n`);
         continue;
       }
 
-      console.log(`  该章节有 ${chunks.length} 个分块，开始生成向量并插入...`);
+      console.log(`  生成向量并插入中...`);
 
       const insertedCount = await insertChunksBatch(
         chunks,
