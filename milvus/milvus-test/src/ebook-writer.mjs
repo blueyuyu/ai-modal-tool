@@ -31,7 +31,7 @@ const embeddings = new OpenAIEmbeddings({
   },
   dimensions: VECTOR_DIM,
 });
-
+console.log('修改模型');
 // 初始化 Milvus 客户端
 const client = new MilvusClient({
   address: "localhost:19530",
