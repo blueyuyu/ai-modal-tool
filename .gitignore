@@ -9,6 +9,7 @@ dist
 .local
 # local env files
 .env
+.env-old
 .env.local
 .env.*.local
 .eslintcache
