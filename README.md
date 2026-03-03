@@ -76,7 +76,6 @@ node  node .\src\insert.mjs
 node .\src\query.mjs
 ```
 
-
 **MySQL 数据库只能根据 id、关键词去检索，涉及到语义检索的，我们都会存到 Milvus 里。**
 
 **我们用 docker compose 跑了 Milvus 数据库，然后在 attu （GUI 工具） 和 node 代码里连上，并做了增删改查。**
@@ -86,3 +85,19 @@ node .\src\query.mjs
 **vector 向量字段需要做索引，用来快速检索。**
 
 **我们把 Milvus 接入了 RAG 流程，实现了 AI 日记本的功能。可以根据自然语言去做语义检索，查出最相关的日记。**
+
+把小说写入 Milvus 数据库, 需要把 docker 容器打开，然后开启 Attu 查看
+
+```
+node .\src\ebook-writer.mjs
+```
+
+这里需要花费大量token, 应该谨慎使用。
+
+把数据分析进入数据库之后，再来 进行数据库查询。 这里要注意，先不换模型（没钱也不换模型，还是得充点钱，或者用别人的同平台模型）， 因为每一个模型 的 向量维度不一样， 且分析之后生成的数据，和查询的时候的向量维度一定要保持一致才能查到数据。
+
+demo1:  让ai 阅读文本，写入milvus 向量数据库，再让ai 模型阅读回答。
+
+```html
+node .\src\ebook-reader-rag.mjs
+```

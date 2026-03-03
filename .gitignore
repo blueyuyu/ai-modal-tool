@@ -9,6 +9,7 @@ dist
 .local
 # local env files
 .env
+.env-tengxun
 .env.local
 .env.*.local
 .eslintcache
