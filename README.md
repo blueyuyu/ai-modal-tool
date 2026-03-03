@@ -101,3 +101,7 @@ demo1:  让ai 阅读文本，写入milvus 向量数据库，再让ai 模型阅�
 ```html
 node .\src\ebook-reader-rag.mjs
 ```
+
+## 关于Memory 的策略
+
+memory 策略， 截断、总结、检索
