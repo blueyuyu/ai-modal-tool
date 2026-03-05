@@ -50,7 +50,7 @@ async function inMemoryDemo() {
   allMessage.forEach((msg, index) => {
     console.log(`第${index + 1}轮对话`);
     console.log("------");
-    console.log(index + 1, 轮, "------", msg.type === "human" ? '用户' : 'AI', msg.content);
+    console.log(msg.type === "human" ? '用户' : 'AI', "------", msg.content);
   })
 }
 
