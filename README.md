@@ -105,3 +105,19 @@ node .\src\ebook-reader-rag.mjs
 ## 关于Memory 的策略
 
 memory 策略， 截断、总结、检索
+
+将对话存储在文件内,实现持续对话的功能.
+
+memory-test/     文件下
+
+第一次对话
+
+```
+node .\history-test2.mjs
+```
+
+第二次对话
+
+```
+node .\history-test3.mjs
+```
