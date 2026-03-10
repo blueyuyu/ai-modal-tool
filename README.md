@@ -121,3 +121,19 @@ node .\history-test2.mjs
 ```
 node .\history-test3.mjs
 ```
+
+总结: 当前面信息太多了的时候,使用总结减少下次聊天的token 消耗;
+
+D:\companyPro\tool-test\memory-test
+
+一种是根据对话条数，来截取对话与总结对话
+
+```
+node .\summarization-memory.mjs
+```
+
+！！！ 一种是根据token 数量，超过一定的token，就截取超过部分的对话，进行总结（不太理解，记得重写）
+
+```
+node .\summarization-memory2.mjs
+```
