@@ -9,6 +9,15 @@ import {
 } from "@langchain/core/messages";
 import { getEncoding } from "js-tiktoken";
 
+const model = new ChatOpenAI({
+  modelName: process.env.MODEL_NAME,
+  apiKey: process.env.OPENAI_API_KEY,
+  temperature: 0,
+  configuration: {
+    baseURL: process.env.OPENAI_BASE_URL,
+  },
+});
+
 // 计算消息数组的总 token 数量
 function countTokens(messages, encoder) {
   let total = 0;
@@ -26,19 +35,39 @@ async function summarizationMemoryDemo() {
   const history = new InMemoryChatMessageHistory();
   const maxTokens = 200;
   const keepRecentTokens = 80; // 保留最近消息的 token 数量（约占总数的 40%）
-  const encoder = getEncoding("cl100k_base");
+  const enc = getEncoding("cl100k_base");
 
   const messages = [
-    { type: "human", content: "我叫张三" },
-    { type: "ai", content: "你好张三，很高兴认识你！" },
-    { type: "human", content: "我今年25岁" },
-    { type: "ai", content: "25岁正是青春年华，有什么我可以帮助你的吗？" },
-    { type: "human", content: "我喜欢编程" },
-    { type: "ai", content: "编程很有趣！你主要用什么语言？" },
-    { type: "human", content: "我住在北京" },
-    { type: "ai", content: "北京是个很棒的城市！" },
-    { type: "human", content: "我的职业是软件工程师" },
-    { type: "ai", content: "软件工程师是个很有前景的职业！" },
+    { type: "human", content: "我想学做红烧肉，你能教我吗？" },
+    {
+      type: "ai",
+      content:
+        "当然可以！红烧肉是一道经典的中式菜肴。首先需要准备五花肉、冰糖、生抽、老抽、料酒等材料。",
+    },
+    { type: "human", content: "五花肉需要切多大块？" },
+    {
+      type: "ai",
+      content:
+        "建议切成3-4厘米见方的块，这样既容易入味，口感也更好。切好后可以用开水焯一下去除血沫。",
+    },
+    { type: "human", content: "炒糖色的时候有什么技巧吗？" },
+    {
+      type: "ai",
+      content:
+        "炒糖色是关键步骤。用小火慢慢炒，等冰糖完全融化变成焦糖色，冒小泡时就可以下肉了。注意不要炒过头，否则会发苦。",
+    },
+    { type: "human", content: "需要炖多长时间？" },
+    {
+      type: "ai",
+      content:
+        "一般需要炖40-60分钟，用小火慢炖，直到肉变得软糯入味。可以用筷子戳一下，能轻松戳透就说明好了。",
+    },
+    { type: "human", content: "最后收汁的时候要注意什么？" },
+    {
+      type: "ai",
+      content:
+        "收汁时要用大火，不断翻动，让汤汁均匀包裹在肉块上。看到汤汁变得浓稠，颜色红亮就可以出锅了。",
+    },
   ];
   // 添加所有消息
   for (const msg of messages) {
