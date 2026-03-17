@@ -147,7 +147,9 @@ node .\summarization-memory2.mjs
 node .\src\create-table.mjs
 ```
 
-## 使用smart-import 插件，将数据导入到数据库
+### 使用smart-import 插件，将数据导入到数据库
+
+用 withStructuredOutput。智能录入的功能，它需要大模型的结构化输出控制
 
 ```
 node .\src\smart-import.mjs
