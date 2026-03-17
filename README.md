@@ -1,6 +1,6 @@
 # agent 开发项目
 
-学习demo 记录,   node 最低版本最好是20以上 ，需要使用 谷歌自动化插件版本：  node v20.19.0
+学习demo 记录, node 最低版本最好是20以上 ，需要使用 谷歌自动化插件版本： node v20.19.0
 
 ## mini-cursor 项目运行code
 
@@ -42,7 +42,7 @@ node .\src\hello-rag.mjs
 
 loader 会把这些资料进行转化， 先是把资料用 Splitter 进行拆分， 拆成一个个小型文档之后， 再给嵌入模型做向量化处理。
 
-demo1:  将掘金文章获取解析，将文章分割，变成向量， 并提问，让ai获取相似度最高的两个片段，依据此回答。
+demo1: 将掘金文章获取解析，将文章分割，变成向量， 并提问，让ai获取相似度最高的两个片段，依据此回答。
 
 ```
 node .\src\loader-and-splitter.mjs
@@ -68,7 +68,7 @@ cd  /milvus/milvus-test
 node  node .\src\insert.mjs
 ```
 
-安装 [https://github.com/zilliztech/attu/releases](https://github.com/zilliztech/attu/releases)     Attu 工具
+安装 [https://github.com/zilliztech/attu/releases](https://github.com/zilliztech/attu/releases) Attu 工具
 
 对存储的向量数据，进行查询
 
@@ -96,7 +96,7 @@ node .\src\ebook-writer.mjs
 
 把数据分析进入数据库之后，再来 进行数据库查询。 这里要注意，先不换模型（没钱也不换模型，还是得充点钱，或者用别人的同平台模型）， 因为每一个模型 的 向量维度不一样， 且分析之后生成的数据，和查询的时候的向量维度一定要保持一致才能查到数据。
 
-demo1:  让ai 阅读文本，写入milvus 向量数据库，再让ai 模型阅读回答。
+demo1: 让ai 阅读文本，写入milvus 向量数据库，再让ai 模型阅读回答。
 
 ```html
 node .\src\ebook-reader-rag.mjs
@@ -108,7 +108,7 @@ memory 策略， 截断、总结、检索
 
 将对话存储在文件内,实现持续对话的功能.
 
-memory-test/     文件下
+memory-test/ 文件下
 
 第一次对话
 
@@ -135,5 +135,20 @@ node .\summarization-memory.mjs
 ！！！ 一种是根据token 数量，超过一定的token，就截取超过部分的对话，进行总结（不太理解，记得重写）
 
 ```
+
 node .\summarization-memory2.mjs
+```
+
+## 数据库mysql 插入数据
+
+使用mysql 数据库接收数据，
+
+```
+node .\src\create-table.mjs
+```
+
+## 使用smart-import 插件，将数据导入到数据库
+
+```
+node .\src\smart-import.mjs
 ```
