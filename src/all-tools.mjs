@@ -94,7 +94,7 @@ const executeCommandTool = tool(
     description: "执行命令，并实时返回命令的输出结果",
     schema: z.object({
       command: z.string().describe("要执行的命令"),
-      filePath: z.string().optional().describe("文件路径"),
+      workingDirectory: z.string().optional().describe("执行命令的工作目录路径"),
     }),
   }
 );
