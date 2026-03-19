@@ -92,11 +92,14 @@ async function runAgentWithTools(query, maxIterations = 30) {
 
       let parsedTools = null;
       try {
-        parsedTools = toolParser.parseResult([{ message: fullAIMessage }]);
+        parsedTools = await toolParser.parseResult([
+          { message: fullAIMessage },
+        ]);
       } catch (e) {
         // 解析失败，说明当前增量数据还不足以形成完整的工具调用 JSON，继续等待更多数据
-        continue;
+        console.log("解析失败，等待更多数据...");
       }
+      console.log("parsedTools 解析结果:", JSON.stringify(parsedTools));
 
       if (parsedTools && parsedTools.length > 0) {
         console.log(
@@ -152,7 +155,10 @@ async function runAgentWithTools(query, maxIterations = 30) {
         return fullAIMessage.content;
       }
 
-      console.log("tool_calls", JSON.stringify(fullAIMessage.tool_calls, null, 2));
+      console.log(
+        "tool_calls",
+        JSON.stringify(fullAIMessage.tool_calls, null, 2),
+      );
 
       // 执行工具调用
       for (const toolCall of fullAIMessage.tool_calls) {
